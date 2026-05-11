@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useUser, useClerk } from "@clerk/nextjs";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import Link from "next/link";
@@ -33,6 +33,7 @@ const STATUS_COLOR: Record<string, string> = {
 
 export default function DashboardPage() {
   const { user } = useUser();
+  const { signOut } = useClerk();
   const surveys = useQuery(api.surveys.listByUser, {
     clerkUserId: user?.id ?? "",
   });
@@ -55,9 +56,7 @@ export default function DashboardPage() {
             <span className="text-sm text-slate-600">
               {user?.firstName ?? user?.emailAddresses[0]?.emailAddress}
             </span>
-            <Link href="/sign-out">
-              <Button variant="ghost" size="sm">Sign out</Button>
-            </Link>
+            <Button variant="ghost" size="sm" onClick={() => signOut({ redirectUrl: "/" })}>Sign out</Button>
           </div>
         </div>
       </header>

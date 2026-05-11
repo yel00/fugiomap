@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: `Fugio MAP <${process.env.RESEND_FROM_EMAIL!}>`,
       to: email,
       subject: `${companyName}: Your MAP Assessment is ready`,
       html: `
