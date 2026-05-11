@@ -6,7 +6,7 @@ const isPublicRoute = createRouteMatcher([
   "/about",
   "/sign-in(.*)",
   "/sign-up(.*)",
-  "/take/(.*)",        // survey taking - tokenized, no auth needed
+  "/take/(.*)",         // survey taking - tokenized, no auth needed
   "/api/webhooks/(.*)", // stripe + clerk webhooks
 ]);
 
