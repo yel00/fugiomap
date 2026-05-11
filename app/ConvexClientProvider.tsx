@@ -2,7 +2,13 @@
 
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 
-const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+const url = process.env.NEXT_PUBLIC_CONVEX_URL;
+
+if (!url) {
+  console.warn("NEXT_PUBLIC_CONVEX_URL is not set — Convex will not work.");
+}
+
+const convex = new ConvexReactClient(url ?? "https://placeholder.convex.cloud");
 
 export function ConvexClientProvider({
   children,
